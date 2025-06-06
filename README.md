@@ -5,7 +5,7 @@ This repository contains the code for pre-training and fine-tuning EvaMAE models
 # Instructions for running the code  
 
 # Pre-training  
-You can download the pre-training dataset here: ```https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/Epq3McAub5ZJjedkDFK_WOEBNQ5RNsAd0n1PYmTcgfHjBQ?e=KQjMMt```  
+You can download the pre-training dataset here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/Epq3McAub5ZJjedkDFK_WOEBNQ5RNsAd0n1PYmTcgfHjBQ?e=KQjMMt  
 
 After you download the dataset and metadata files, your directory should look like:
 
