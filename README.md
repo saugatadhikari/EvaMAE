@@ -54,7 +54,8 @@ You can download the fine-tuning dataset for flood segmentation here: https://in
 After you download the dataset and metadata files, you should preprocess them using the code provided in ```/finetuning/data/preprocess_flood_data.py```. After preprocessing, your directory should look like:
 
 ```
-<PATH_TO_DATASET_ROOT_FOLDER>  
+<PATH_TO_DATASET_ROOT_FOLDER>
+--region_sizes.json  
 --- train  
 ------- features  
 ----------- Region_1  
@@ -101,4 +102,22 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.run \
 ```
 
 The fine-tuned models can be downloaded from here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EseF3SNyoIFAultmmqjxmfABAXM0HvwbPmzyf3W_nxwjxw?e=uYFVTH  
+
+# Inference  
+For inference, the basic command is:  
+
+python3 /path/to/finetuning/inference.py \  
+--base_data_path="path/to/test/" \  
+--model="evamae_crossvit" \  
+--task="flood" \  
+--batch_size=1 \  
+--img_size=224 \  
+--use_dem=1 \  
+--use_controlnet=0 \  
+--min_dem=-52.147003 \  
+--max_dem=143.571 \  
+--region_sizes="/path/to/region_sizes.json" \
+--output_path="/path/to/output/folder/" \  
+--weight_path="/path/to/finetuned/weight.pth"  
+```
 
