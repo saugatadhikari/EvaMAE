@@ -23,6 +23,7 @@ After you download the dataset and metadata files, your directory should look li
 --------------- ...  
   
 For pre-training, this is the default command:  
+```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python -u -m torch.distributed.run \  
     --nproc_per_node=4 --nnodes=1 --master_port=29201 /path/to/pretraining/main_pretrain.py \  
     --batch_size 8 \  
@@ -42,6 +43,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -u -m torch.distributed.run \
     --start_epoch 800 \  
     --train_path /path/to/train.csv \  
     --output_dir /path/to/output/folder   
+```
 
 The pre-trained models can be downloaded from here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/Eq1vXq60xIJFo1AGWaS5R3UBqhNIOmAKMzrEZra9XdCwiA?e=Pr2dXk  
 
