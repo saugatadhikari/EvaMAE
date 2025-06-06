@@ -51,7 +51,7 @@ The pre-trained models can be downloaded from here: https://indiana-my.sharepoin
 
 # Fine-tuning  
 You can download the fine-training dataset for flood segmentation here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EmWszM8rUpdNsNeyKAjxmR8BbzmuHyqbGphc_6XDwLjTjQ?e=Mi1U6D  
-After you download the dataset and metadata files, your directory should look like:
+After you download the dataset and metadata files, you should preprocess them using the code provided in ```/finetuning/data/preprocess.py```. After preprocessing, your directory should look like:
 
 ```
 <PATH_TO_DATASET_ROOT_FOLDER>  
