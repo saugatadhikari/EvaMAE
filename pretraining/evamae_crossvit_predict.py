@@ -368,17 +368,11 @@ class MaskedAutoencoderViT(nn.Module):
 
             block_count += 1
         
-        # Apply Cross-Attention: RGB queries DEM
-        latent_norm = self.norm_cross(latent)
-        latent_dem_norm = self.norm_cross(latent_dem)
-
-        latent_cross_out = self.cross_attn_rgb_to_dem(latent_norm, latent_dem_norm, latent_dem_norm)
+        latent_cross_out = self.cross_attn_rgb_to_dem(latent, latent_dem, latent_dem)
         latent = latent + latent_cross_out
-        latent_norm = self.norm_cross(latent)
-
-        # MLP after cross-attn
-        latent = latent + self.cross_mlp(latent_norm)
-        # latent = self.norm_cross2(latent)
+        latent = self.norm_cross(latent)
+        latent = latent + self.cross_mlp(latent)
+        latent = self.norm_cross2(latent)
 
         # append cls token
         cls_tokens = self.cls_token.expand(latent.shape[0], -1, -1)
@@ -397,15 +391,11 @@ class MaskedAutoencoderViT(nn.Module):
 
             block_count_dec += 1
 
-        latent_dec_norm = self.norm_cross_dec(latent_dec)
-        latent_dec_dem_norm = self.norm_cross_dec(latent_dec_dem)
-
-        latent_dec_cross_out = self.cross_attn_rgb_to_dem_dec(latent_dec_norm, latent_dec_dem_norm, latent_dec_dem_norm)
+        latent_dec_cross_out = self.cross_attn_rgb_to_dem_dec(latent_dec_norm, latent_dec_dem, latent_dec_dem)
         latent_dec = latent_dec + latent_dec_cross_out
         latent_dec_norm = self.norm_cross_dec(latent_dec)
-
-        # MLP after cross-attn
         latent_dec = latent_dec + self.cross_mlp(latent_dec_norm)
+        latent_dec = self.norm_cross2_dec(latent_dec)
 
         # predictor projection
         pred = self.decoder_pred(latent_dec)
