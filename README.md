@@ -106,6 +106,7 @@ The fine-tuned models can be downloaded from here: https://indiana-my.sharepoint
 # Inference  
 For inference, the basic command is:  
 
+```
 python3 /path/to/finetuning/inference.py \  
 --base_data_path="path/to/test/" \  
 --model="evamae_crossvit" \  
