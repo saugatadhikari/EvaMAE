@@ -43,6 +43,8 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python -u -m torch.distributed.run \
     --train_path /path/to/train.csv \  
     --output_dir /path/to/output/folder   
 
+The pre-trained models can be downloaded from here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/Eq1vXq60xIJFo1AGWaS5R3UBqhNIOmAKMzrEZra9XdCwiA?e=Pr2dXk  
+
 # Fine-tuning  
 You can download the fine-training dataset for flood segmentation here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EmWszM8rUpdNsNeyKAjxmR8BbzmuHyqbGphc_6XDwLjTjQ?e=Mi1U6D  
 After you download the dataset and metadata files, your directory should look like:
@@ -76,6 +78,5 @@ After you download the dataset and metadata files, your directory should look li
     --log_dir <PATH_TO_YOUR_OUTPUT_FOLDER> \  
     --num_workers 8  
 
+The fine-tuned models can be downloaded from here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EseF3SNyoIFAultmmqjxmfABAXM0HvwbPmzyf3W_nxwjxw?e=uYFVTH  
 
-# Pre-trained Models
-EvaMAE: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EjmSoZOUjY5PpdZJ2xfhOmcBY3-Vy5se16OB1xBYh1wiZw?e=TWIhoG  
