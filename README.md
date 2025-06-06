@@ -51,21 +51,32 @@ The pre-trained models can be downloaded from here: https://indiana-my.sharepoin
 
 # Fine-tuning  
 You can download the fine-training dataset for flood segmentation here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EmWszM8rUpdNsNeyKAjxmR8BbzmuHyqbGphc_6XDwLjTjQ?e=Mi1U6D  
-After you download the dataset and metadata files, you should preprocess them using the code provided in ```/finetuning/data/preprocess.py```. After preprocessing, your directory should look like:
+After you download the dataset and metadata files, you should preprocess them using the code provided in ```/finetuning/data/preprocess_flood_data.py```. After preprocessing, your directory should look like:
 
 ```
 <PATH_TO_DATASET_ROOT_FOLDER>  
---- train.csv  
---- val.csv  
---- EvaFlood  
-------- train  
----------- flood  
---------------- flood_0    
---------------- ...  
-------- val  
----------- flood    
---------------- flood_0  
---------------- ...  
+--- train  
+------- features  
+----------- Region_1  
+---------------- Region_1_y_0_x_0_features.npy  
+---------------- ...  
+----------- ...  
+------- groundTruths  
+----------- Region_1  
+---------------- Region_1_y_0_x_0_label.npy  
+---------------- ...  
+----------- ...  
+--- test  
+------- features  
+----------- Region_110  
+---------------- Region_110_y_0_x_0_features.npy  
+---------------- ...  
+----------- ...  
+------- groundTruths  
+----------- Region_110  
+---------------- Region_110_y_0_x_0_label.npy  
+---------------- ...  
+----------- ...  
 ```
   
 For fine-tuning, this is the default command:  
