@@ -5,10 +5,11 @@ This repository contains the code for pre-training and fine-tuning EvaMAE models
 # Instructions for running the code  
 
 # Pre-training  
-You can download the pre-training dataset here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/Epq3McAub5ZJjedkDFK_WOEBNQ5RNsAd0n1PYmTcgfHjBQ?e=KQjMMt  
+You can download the pre-training dataset here: ```https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/Epq3McAub5ZJjedkDFK_WOEBNQ5RNsAd0n1PYmTcgfHjBQ?e=KQjMMt```  
 
 After you download the dataset and metadata files, your directory should look like:
 
+```
 <PATH_TO_DATASET_ROOT_FOLDER>  
 --- train.csv  
 --- val.csv  
@@ -21,6 +22,7 @@ After you download the dataset and metadata files, your directory should look li
 ---------- flood    
 --------------- flood_0  
 --------------- ...  
+```
   
 For pre-training, this is the default command:  
 ```
@@ -51,6 +53,7 @@ The pre-trained models can be downloaded from here: https://indiana-my.sharepoin
 You can download the fine-training dataset for flood segmentation here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EmWszM8rUpdNsNeyKAjxmR8BbzmuHyqbGphc_6XDwLjTjQ?e=Mi1U6D  
 After you download the dataset and metadata files, your directory should look like:
 
+```
 <PATH_TO_DATASET_ROOT_FOLDER>  
 --- train.csv  
 --- val.csv  
@@ -63,10 +66,12 @@ After you download the dataset and metadata files, your directory should look li
 ---------- flood    
 --------------- flood_0  
 --------------- ...  
+```
   
-  For fine-tuning, this is the default command:  
+For fine-tuning, this is the default command:  
 
-  python -m torch.distributed.launch --nproc_per_node=8 \  
+```
+python -m torch.distributed.launch --nproc_per_node=8 \  
     --nnodes=1 --master_port=1234 /path/to/finetuning/main_finetune.py \  
     --batch_size 8 --accum_iter 16 \  
     --norm_pix_loss --epochs 100 \  
@@ -79,6 +84,7 @@ After you download the dataset and metadata files, your directory should look li
     --output_dir <PATH_TO_YOUR_OUTPUT_FOLDER> \  
     --log_dir <PATH_TO_YOUR_OUTPUT_FOLDER> \  
     --num_workers 8  
+```
 
 The fine-tuned models can be downloaded from here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EseF3SNyoIFAultmmqjxmfABAXM0HvwbPmzyf3W_nxwjxw?e=uYFVTH  
 
