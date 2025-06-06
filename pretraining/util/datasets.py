@@ -142,9 +142,9 @@ class EvaFlood_Dataset(SatelliteDataset):
     def __getitem__(self, index):
         selection = self.df.iloc[index]
 
-        folder = 'evaflood_pretrain/train'
+        folder = 'EvaFlood/train'
         if 'val' in self.csv_path:
-            folder = 'evaflood_pretrain/val'
+            folder = 'EvaFlood/val'
 
         cat = selection['category']
         loc_id = selection['location_id']
@@ -152,13 +152,13 @@ class EvaFlood_Dataset(SatelliteDataset):
 
         if cat == "flood":
             image_path = '{0}/{1}_{2}/{3}_{4}_{5}.tif'.format(cat,cat,loc_id,cat,loc_id,img_id)
-            dem_path = '{0}/{1}_{2}/{3}_{4}_{5}_DEM.tif'.format(cat,cat,loc_id,cat,loc_id,img_id) # saugat
+            dem_path = '{0}/{1}_{2}/{3}_{4}_{5}_DEM.tif'.format(cat,cat,loc_id,cat,loc_id,img_id) 
         else:
             image_path = '{0}/{1}_{2}/{3}_{4}_{5}_rgb.jpg'.format(cat,cat,loc_id,cat,loc_id,img_id)
-            dem_path = '{0}/{1}_{2}/{3}_{4}_{5}_rgb_DEM.tif'.format(cat,cat,loc_id,cat,loc_id,img_id) # saugat
+            dem_path = '{0}/{1}_{2}/{3}_{4}_{5}_rgb_DEM.tif'.format(cat,cat,loc_id,cat,loc_id,img_id) 
 
         abs_img_path = os.path.join(self.base_path, folder, image_path)
-        abs_dem_path = os.path.join(self.base_path, folder, dem_path) # saugat
+        abs_dem_path = os.path.join(self.base_path, folder, dem_path) 
 
         if cat == "flood":
             images = self.open_tiff_image(abs_img_path)  # (h, w, c)
@@ -285,9 +285,9 @@ class EvaFlood_Dataset_SatMAEpp(SatelliteDataset):
     def __getitem__(self, index):
         selection = self.df.iloc[index]
 
-        folder = 'evaflood_pretrain/train'
+        folder = 'EvaFlood/train'
         if 'val' in self.csv_path:
-            folder = 'evaflood_pretrain/val'
+            folder = 'EvaFlood/val'
 
         cat = selection['category']
         loc_id = selection['location_id']

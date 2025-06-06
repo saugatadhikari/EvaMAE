@@ -9,9 +9,8 @@ import cv2
 
 
 class FloodDataset(Dataset):
-	def __init__(self, base_data_path, regions, use_evaloss=False, min_dem=None, max_dem=None, size=None, start=0):
+	def __init__(self, base_data_path, use_evaloss=False, min_dem=None, max_dem=None, size=None, start=0):
 		self.base_data_path = base_data_path
-		self.regions = regions
 		self.use_evaloss = use_evaloss
 		self.min_dem = min_dem
 		self.max_dem = max_dem
@@ -22,9 +21,11 @@ class FloodDataset(Dataset):
 		print("min_dem: ", self.min_dem)
 		print("max_dem: ", self.max_dem)
 
+		self.regions = os.listdir(f"{self.base_data_path}/features/")
+
 		for t_r in self.regions:
-			imgs = os.listdir(f"{self.base_data_path}/features/{t_r[0]}")
-			labels = os.listdir(f"{self.base_data_path}/groundTruths/{t_r[0]}")
+			imgs = os.listdir(f"{self.base_data_path}/features/{t_r}")
+			labels = os.listdir(f"{self.base_data_path}/groundTruths/{t_r}")
 
 			# dems = os.listdir(f"{d_p[0]}/dem")
 			if size is not None:
@@ -141,12 +142,6 @@ class FloodDatasetTest(Dataset):
 		# for t_r in self.regions:
 		imgs = os.listdir(f"{self.base_data_path}/features/{self.regions[0]}")
 		labels = os.listdir(f"{self.base_data_path}/groundTruths/{self.regions[0]}")
-
-		# dems = os.listdir(f"{d_p[0]}/dem")
-		if size is not None:
-			imgs = imgs[start:start + size]
-			labels = labels[start:start + size]
-			# dems = dems[start:start + size]
 		
 		if len(imgs) != len(labels):
 			print(f"numbers of imgs and labels do not match: Region_")
@@ -157,12 +152,6 @@ class FloodDatasetTest(Dataset):
 		self.imgs.extend(imgs)
 		self.labels.extend(labels)
 		# self.dems.extend(dems)
-
-		# print("self.labels")
-		# print(self.labels)
-		# print("------------")
-		# print("self.imgs")
-		# print(self.imgs)
 		
 		# transform using EvaNet's methods
 		training_transforms = []

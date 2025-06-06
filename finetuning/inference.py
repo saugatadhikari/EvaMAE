@@ -210,9 +210,10 @@ def main():
 
 	model = model.to(device)
 
-	if args.task == "landslide":
-		test_path = "/N/slate/adhiksa/projects/geofm_finetuning/data/landslide/TestData/img/"
-		args.regions = os.listdir(test_path)
+	if args.task == "flood":
+		args.regions = os.listdir(f"{args.base_data_path}/features/")
+	elif args.task == "landslide":
+		args.regions = os.listdir(f"{args.base_data_path}/img/")
 
 	for test_region in args.regions:
 		print("TEST REGION: ", test_region)

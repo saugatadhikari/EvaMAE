@@ -81,9 +81,9 @@ def main():
 
 
 	if args.task == "flood":
-		dataset = FloodDataset(args.base_data_path, args.regions, args.use_evaloss, args.min_dem, args.max_dem)
+		dataset = FloodDataset(args.base_data_path, args.use_evaloss, args.min_dem, args.max_dem)
 	elif args.task == "landslide":
-		dataset = LandslideDataset(args.base_data_path, args.regions, args.use_evaloss, args.min_dem, args.max_dem)
+		dataset = LandslideDataset(args.base_data_path, args.use_evaloss, args.min_dem, args.max_dem)
 
 	train_set, val_set = sequential_split(dataset, train_ratio=0.8)
 

@@ -65,7 +65,7 @@ def get_args_parser():
 
     # Dataset parameters
     parser.add_argument('--train_path', default='dataset/evaflood_pretrain/train.csv', type=str, help='Train .csv path')
-    parser.add_argument('--dataset_type', default='sentinel', choices=['rgb', 'eva_flood'],
+    parser.add_argument('--dataset_type', default='eva_flood', choices=['rgb', 'eva_flood'],
                         help='Whether to use rgb, or eva_flood dataset.')
     parser.add_argument('--masked_bands', type=int, nargs='+', default=None,
                         help='Sequence of band indices to mask (with mean val) in sentinel dataset')
