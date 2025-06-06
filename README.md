@@ -4,6 +4,20 @@ This repository contains the code for pre-training and fine-tuning EvaMAE models
 
 # Instructions for running the code  
 
+# Installation  
+# Requirements
+Linux  
+Anaconda Environment with Python>=3.7  
+PyTorch>=1.12.1, torchvision>=0.13.1 and CUDA>=11.3  
+
+Conda environment can be created from env.yml file:  
+``` conda env create -f env.yml ```
+
+To activate:  
+``` conda activate evamae_env```  
+
+
+
 # Pre-training  
 You can download the pre-training dataset here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/Epq3McAub5ZJjedkDFK_WOEBNQ5RNsAd0n1PYmTcgfHjBQ?e=KQjMMt  
 
