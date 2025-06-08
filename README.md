@@ -96,22 +96,21 @@ After you download the dataset and metadata files, you should preprocess them us
 For fine-tuning, this is the default command:  
 
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.run \  
---nproc_per_node=4 --nnodes=1 --master_port=1234 /path/to/main_finetune.py \  
---base_data_path="path/to/train/" \  
---model="evamae_crossvit" \  
---task="flood" \  
---num_classes=3 \  
---lr=1e-5 \  
---num_epoch=30 \  
---batch_size=32 \  
---img_size=224 \  
---use_dem=1 \  
---use_controlnet=0 \  
---min_dem=-52.147003 \  
---max_dem=143.571 \  
---output_path="/path/to/output/folder/" \  
---weight_path="/path/to/pretrained/weight.pth"  
+CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.run --nproc_per_node=4 --nnodes=1 --master_port=1234 /path/to/main_finetune.py \  
+--base_data_path="path/to/train/" \
+--model="evamae_crossvit" \
+--task="flood" \
+--num_classes=3 \
+--lr=1e-5 \
+--num_epoch=30 \
+--batch_size=32 \
+--img_size=224 \
+--use_dem=1 \
+--use_controlnet=0 \
+--min_dem=-52.147003 \
+--max_dem=143.571 \
+--output_path="/path/to/output/folder/" \
+--weight_path="/path/to/pretrained/weight.pth"
 ```
 
 The fine-tuned models can be downloaded from here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/EseF3SNyoIFAultmmqjxmfABAXM0HvwbPmzyf3W_nxwjxw?e=uYFVTH  
