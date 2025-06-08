@@ -18,30 +18,11 @@ class FloodDataset(Dataset):
 		self.labels = []
 		self.dems = []
 
-		print("min_dem: ", self.min_dem)
-		print("max_dem: ", self.max_dem)
-
 		self.regions = os.listdir(f"{self.base_data_path}/features/")
 
 		for t_r in self.regions:
 			imgs = os.listdir(f"{self.base_data_path}/features/{t_r}")
-			labels = os.listdir(f"{self.base_data_path}/groundTruths/{t_r}")
-
-			# dems = os.listdir(f"{d_p[0]}/dem")
-			if size is not None:
-				imgs = imgs[start:start + size]
-				labels = labels[start:start + size]
-				# dems = dems[start:start + size]
-			
-			if len(imgs) != len(labels):
-				print(f"numbers of imgs and labels do not match: Region_{t_r[0]}")
-
-			assert len(imgs) == len(labels), "numbers of imgs and labels do not match"
-			# assert len(imgs) == len(dems), "numbers of imgs and dems do not match"
-
 			self.imgs.extend(imgs)
-			self.labels.extend(labels)
-			# self.dems.extend(dems)
 
 		training_transforms = []
 
@@ -66,9 +47,6 @@ class FloodDataset(Dataset):
 
 		label_file = re.sub("features", "label", fea_file)
 
-		# print("fea_file: ", fea_file)
-		# print("label_file: ", label_file)
-
 		region_id = int(fea_file.split("_")[1])
 
 		# load features
@@ -88,26 +66,9 @@ class FloodDataset(Dataset):
 		if not self.use_evaloss: # need -1, 0, 1 for evaloss, 0, 1, 2 for CrossEntropy loss
 			label_arr = label_arr + 1
 		
-		# print(label_arr)
-		
-		# Apply torchvision tranforms to rgb data (conver to tensor and normalize using mean std of 0.5 !!!!!!!!!!)
 		rgb_arr = torch.tensor(rgb_arr.astype('float32')).permute(2, 0, 1)
-		# rgb_arr = torch.tensor(rgb_arr).permute(2, 0, 1)
-
-		# print("------RGB ARR ORIG--------")
-		# print(rgb_arr.shape)
-		# print(rgb_arr)
 		self.transformed_rgb = self.data_transforms(rgb_arr)
 		self.norm_dem = self.normalize(dem_arr)
-
-		# print("-------------TRANSFORMED RGB-------------")
-		# print(self.transformed_rgb.shape)
-		# print(self.transformed_rgb)
-
-		# print("#################")
-		# print("------------NORM DEM-------------")
-		# print(self.norm_dem.shape)
-		# print(self.norm_dem)
 
 		# put all data in one dictionary
 		self.data_dict["filename"] = fea_file
@@ -141,17 +102,8 @@ class FloodDatasetTest(Dataset):
 
 		# for t_r in self.regions:
 		imgs = os.listdir(f"{self.base_data_path}/features/{self.regions[0]}")
-		labels = os.listdir(f"{self.base_data_path}/groundTruths/{self.regions[0]}")
-		
-		if len(imgs) != len(labels):
-			print(f"numbers of imgs and labels do not match: Region_")
-
-		assert len(imgs) == len(labels), "numbers of imgs and labels do not match"
-		# assert len(imgs) == len(dems), "numbers of imgs and dems do not match"
 
 		self.imgs.extend(imgs)
-		self.labels.extend(labels)
-		# self.dems.extend(dems)
 		
 		# transform using EvaNet's methods
 		training_transforms = []

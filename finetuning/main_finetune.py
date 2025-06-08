@@ -7,7 +7,7 @@ import torch.nn.functional as F
 
 from torch.utils.data import DataLoader
 
-from finetuning.dataset import FloodDataset, LandslideDataset
+from dataset import FloodDataset, LandslideDataset
 from model import *
 from train import train
 from utils import sequential_split

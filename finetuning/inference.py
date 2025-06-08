@@ -8,7 +8,7 @@ from collections import OrderedDict
 import wandb
 from torch.utils.data import DataLoader
 
-from finetuning.dataset import FloodDatasetTest, LandslideDatasetTest
+from dataset import FloodDatasetTest, LandslideDatasetTest
 from model import *
 from utils import sequential_split
 
