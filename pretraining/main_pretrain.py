@@ -93,8 +93,8 @@ def get_args_parser():
     parser.add_argument('--dist_on_itp', action='store_true')
     parser.add_argument('--dist_url', default='env://', help='url used to set up distributed training')
 
-    parser.add_argument('--use_satmae_weights', type=int, default=0,
-                        help='Whether to initialize the new model with SatMAEs pretrained weights')
+    parser.add_argument('--additional_channel', type=int, default=0,
+                        help='Whether the new model has extra (DEM) channel or not. Only required for evamae_channel')
 
     return parser
 
@@ -147,7 +147,7 @@ def main(args):
                                                 patch_size=args.patch_size,
                                                 in_chans=dataset_train.in_c,
                                                 norm_pix_loss=args.norm_pix_loss)
-        if args.use_satmae_weights:
+        if args.additional_channel:
             model_satmae = models_mae.__dict__[args.model](img_size=args.input_size,
                                                 patch_size=args.patch_size,
                                                 in_chans=dataset_train.in_c,
@@ -216,7 +216,7 @@ def main(args):
     optimizer = torch.optim.AdamW(param_groups, lr=args.lr, betas=(0.9, 0.95))
     loss_scaler = NativeScaler()
 
-    if args.use_satmae_weights:
+    if args.additional_channel:
         misc.load_model_resume(args=args, new_model=model_without_ddp, old_model=model_satmae, optimizer=optimizer, loss_scaler=loss_scaler)
     else:
         misc.load_model(args=args, model_without_ddp=model_without_ddp, optimizer=optimizer, loss_scaler=loss_scaler)
