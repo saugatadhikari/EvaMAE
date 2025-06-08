@@ -31,7 +31,7 @@ from engine_pretrain import train_one_epoch
 
 
 def get_args_parser():
-    parser = argparse.ArgumentParser('SatMAE++ pre-training', add_help=False)
+    parser = argparse.ArgumentParser('EvaMAE pre-training', add_help=False)
     parser.add_argument('--batch_size', default=16, type=int,
                         help='Batch size per GPU (effective batch size is batch_size * accum_iter * # gpus')
     parser.add_argument('--epochs', default=200, type=int)
@@ -39,7 +39,7 @@ def get_args_parser():
                         help='Accumulate gradient iterations (for increasing the effective batch size under memory constraints)')
 
     # Model parameters
-    parser.add_argument('--model_type', default='evamae_channel', choices=['evamae_channel', 'evamae_conv', 'evamae_conv_minus', 'evamae_crossattn', 'evamae_crossvit' 'prithvi', 'satmaepp'], help='Use channel model')
+    parser.add_argument('--model_type', default='evamae_channel', choices=['evamae_channel', 'evamae_conv', 'evamae_conv_minus', 'evamae_crossattn', 'evamae_crossvit', 'prithvi', 'satmaepp'], help='Use channel model')
     parser.add_argument('--model', default='mae_vit_large_patch16', type=str, metavar='MODEL', help='Name of model to train')
     parser.add_argument('--input_size', default=96, type=int, help='images input size')
     parser.add_argument('--patch_size', default=8, type=int, help='patch embedding patch size')
