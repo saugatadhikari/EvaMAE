@@ -40,25 +40,24 @@ After you download the dataset and metadata files, your directory should look li
   
 For pre-training, this is the default command:  
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3 python -u -m torch.distributed.run \  
-    --nproc_per_node=4 --nnodes=1 --master_port=29201 /path/to/pretraining/main_pretrain.py \  
-    --batch_size=8 \  
-    --accum_iter=16 \  
-    --norm_pix_loss \  
-    --epochs=850 \  
-    --warmup_epochs=20 \  
-    --input_size=224 \  
-    --patch_size=16 \  
-    --mask_ratio=0.75 \  
-    --model_type="evamae_crossvit" \  
-    --dataset_type="eva_flood" \  
-    --blr=0.000015 \  
-    --num_workers=8 \  
-    --spatial_mask=1 \  
-    --resume="/path/to/pretrained_model.pth" \  
-    --start_epoch=800 \  
-    --train_path="/path/to/train.csv" \  
-    --output_dir="/path/to/output/folder"   
+CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.run --nproc_per_node=4 --nnodes=1 --master_port=29201 /path/to/pretraining/main_pretrain.py \
+    --batch_size=8 \
+    --accum_iter=16 \
+    --norm_pix_loss \
+    --epochs=850 \
+    --warmup_epochs=20 \
+    --input_size=224 \
+    --patch_size=16 \
+    --mask_ratio=0.75 \
+    --model_type=evamae_crossvit \
+    --dataset_type=eva_flood \
+    --blr=0.000015 \
+    --num_workers=8 \
+    --spatial_mask=1 \
+    --start_epoch=800 \
+    --resume="/path/to/pretrained_model.pth" \
+    --train_path="/path/to/train.csv" \
+    --output_dir="/path/to/output/folder" 
 ```
 
 The pre-trained models can be downloaded from here: https://indiana-my.sharepoint.com/:f:/g/personal/adhiksa_iu_edu/Eq1vXq60xIJFo1AGWaS5R3UBqhNIOmAKMzrEZra9XdCwiA?e=Pr2dXk  
